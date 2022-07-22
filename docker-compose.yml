@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  delegated:
+    image: santaklouse/delegated:latest
+    command: "-P1080 SERVER=socks SSLTUNNEL=127.1:4444"
+    ports:
+      - "1080:1080"
+    depends_on:
+      i2p:
+        condition: service_healthy
+    restart: always
+  i2p:
+    image: santaklouse/i2p:latest
+    ports:
+      - "4444:4444"
+      - "4445:4445"
+      - "6668:6668"
+      - "7657:7657"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://127.0.0.1:4444" ]
+      interval: 1m30s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
