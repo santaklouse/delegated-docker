@@ -10,6 +10,8 @@ delegated-docker
 [DeleGate][1] is a multipurpose proxy server which relays various application
 protocols on TCP/IP or UDP/IP
 
+https://its-more.jp/delegate/ftp/pub/DeleGate/Manual.htm#SRCIF
+
 ## docker-compose.yml
 
 ```
